@@ -4,7 +4,7 @@ import {User} from '../types/user.types';
 function getUserByUserNameAndEmail(username: string, password: string) {
   const listFakeUsers = CONFIGS.fakeUsers;
   return listFakeUsers.find(
-    u => u.username === username && u.password === password,
+    u => u.username === username.toLocaleLowerCase() && u.password === password,
   );
 }
 
