@@ -12,8 +12,8 @@ type LoginScreenProps = {};
 export default function LoginScreen(
   props: LoginScreenProps,
 ): React.ReactElement {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('jackson.nguyen');
+  const [password, setPassword] = useState('123456');
 
   const dispatch = useAppDispatch();
 

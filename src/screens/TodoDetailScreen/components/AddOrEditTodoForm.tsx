@@ -13,7 +13,7 @@ type AddOrEditTodoFormProps = {
 
 export default function AddOrEditTodoForm(props: AddOrEditTodoFormProps) {
   const navigation = useNavigation<RootNavigationProps>();
-  const {todo, isCreating, createTodo, updateTodo, completeTodo} =
+  const {todo, isCreating, createTodo, updateTodo, completeTodo, deleteTodo} =
     useTodoDetail(props.todoId);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -52,6 +52,14 @@ export default function AddOrEditTodoForm(props: AddOrEditTodoFormProps) {
     Alert.alert('Completed todo!');
   }, [title, description, priority]);
 
+  const handleOnDelete = useCallback(() => {
+    deleteTodo({
+      id: todo?.id || '',
+    });
+    Alert.alert('Deleted todo!');
+    navigation.goBack();
+  }, [title, description, priority]);
+
   return (
     <View style={[styles.container]}>
       <Text style={[styles.inputLabel]}>Name:</Text>
@@ -82,7 +90,11 @@ export default function AddOrEditTodoForm(props: AddOrEditTodoFormProps) {
           <View style={[styles.subBtns]}>
             <Button title="Save" style={styles.btn} onPress={handleOnUpdate} />
             <View style={[styles.box]} />
-            <Button title="Delete" style={styles.btnInactive} />
+            <Button
+              title="Delete"
+              style={styles.btnInactive}
+              onPress={handleOnDelete}
+            />
           </View>
         </>
       )}

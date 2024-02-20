@@ -52,7 +52,9 @@ export const todoSlice = createSlice({
           : i,
       );
     },
-    deleteTodo: state => {},
+    deleteTodo: (state, action) => {
+      state.todos = state.todos.filter(i => i.id !== action.payload.id)
+    },
   },
 });
 
