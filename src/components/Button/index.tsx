@@ -2,21 +2,22 @@ import {
   StyleProp,
   StyleSheet,
   Text,
+  TextStyle,
   TouchableOpacity,
-  ViewStyle,
+  TouchableOpacityProps,
 } from 'react-native';
 
-export type ButtonProps = {
-  style?: StyleProp<ViewStyle>;
+export type ButtonProps = TouchableOpacityProps & {
   title: string;
+  titleStyle?: StyleProp<TextStyle>;
 };
 
 export default function Button(props: ButtonProps) {
-  const {title} = props;
+  const {title, style, titleStyle, ...rest} = props;
 
   return (
-    <TouchableOpacity style={[styles.btnStyle]}>
-      <Text style={[styles.title]}>{title}</Text>
+    <TouchableOpacity style={[styles.btnStyle, style]} {...rest}>
+      <Text style={[styles.title, titleStyle]}>{title}</Text>
     </TouchableOpacity>
   );
 }
