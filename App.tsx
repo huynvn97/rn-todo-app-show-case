@@ -7,10 +7,15 @@
 import React from 'react';
 
 import {RootNavigation} from './src/navigation';
-import LoginScreen from './src/screens/LoginScreen';
+import {Provider} from 'react-redux';
+import {store} from './src/redux';
 
 function App(): React.JSX.Element {
-  return <LoginScreen />;
+  return (
+    <Provider store={store}>
+      <RootNavigation />
+    </Provider>
+  );
 }
 
 export default App;
