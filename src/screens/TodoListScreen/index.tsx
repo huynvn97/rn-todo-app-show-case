@@ -37,6 +37,7 @@ export default function TodoListScreen(
         data={todos}
         keyExtractor={(todo: Todo) => todo.id}
         renderItem={_renderItem}
+        ListEmptyComponent={<Text>Empty Todo ...</Text>}
       />
     </SimpleLayout>
   );
