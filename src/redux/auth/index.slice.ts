@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {User} from '../../types/user.types';
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -8,6 +9,12 @@ export const authSlice = createSlice({
       error: '',
       loading: false,
     },
+  } as {
+    user: User | null;
+    login: {
+      error: string;
+      loading: boolean;
+    };
   },
   reducers: {
     login: state => {

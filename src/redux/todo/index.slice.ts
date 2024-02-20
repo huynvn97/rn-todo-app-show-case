@@ -29,8 +29,29 @@ export const todoSlice = createSlice({
     ] as Todo[],
   },
   reducers: {
-    createTodo: state => {},
-    updateTodo: state => {},
+    createTodo: (state, action) => {
+      state.todos = [
+        {
+          ...action.payload,
+          id: new Date().getTime(),
+          createdDate: new Date(),
+          updatedDate: new Date(),
+          status: TodoStatus.CREATED,
+        },
+        ...state.todos,
+      ];
+    },
+    updateTodo: (state, action) => {
+      state.todos = state.todos.map(i =>
+        i.id === action.payload.id
+          ? {
+              ...i,
+              ...action.payload,
+              updatedDate: new Date(),
+            }
+          : i,
+      );
+    },
     deleteTodo: state => {},
   },
 });

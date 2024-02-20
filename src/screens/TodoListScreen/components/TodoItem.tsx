@@ -1,15 +1,29 @@
-import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {
+  StyleProp,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from 'react-native';
 import moment from 'moment';
-import {Todo} from '../../../types/todo.types';
+import {Todo, TodoStatus} from '../../../types/todo.types';
+import {useNavigation} from '@react-navigation/native';
+import {RootNavigationProps} from '../../../types/navigation.types';
 
 export default function TodoItem(props: {
   todo: Todo;
   containerStyle?: StyleProp<ViewStyle>;
 }) {
+  const navigation = useNavigation<RootNavigationProps>();
   const {todo, containerStyle} = props;
 
   return (
-    <View style={[styles.container, containerStyle]}>
+    <TouchableOpacity
+      style={[styles.container, containerStyle]}
+      onPress={() =>
+        navigation.navigate('TodoDetailScreen', {todoId: todo.id})
+      }>
       <Text style={[styles.title]} numberOfLines={1}>
         {todo.title}
       </Text>
@@ -18,13 +32,21 @@ export default function TodoItem(props: {
       </Text>
 
       <View style={[styles.footer]}>
+        <Text
+          style={[
+            styles.subtitle,
+            todo.status === TodoStatus.COMPLETED && {color: 'green'},
+          ]}>
+          {todo.status === TodoStatus.COMPLETED ? 'Completed' : 'Not done'}
+        </Text>
+
         <Text style={[styles.subtitle]}>
           {todo.updatedDate
             ? moment(todo.updatedDate).format('hh:mm MM-DD-YYYY')
             : '--'}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -38,6 +60,8 @@ const styles = StyleSheet.create({
   footer: {
     marginTop: 5,
     alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
   },
   title: {
     fontSize: 16,
