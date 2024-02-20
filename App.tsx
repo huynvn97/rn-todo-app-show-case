@@ -4,13 +4,13 @@
  *
  * @format
  */
-
 import React from 'react';
 
 import {RootNavigation} from './src/navigation';
+import LoginScreen from './src/screens/LoginScreen';
 
 function App(): React.JSX.Element {
-  return <RootNavigation />;
+  return <LoginScreen />;
 }
 
 export default App;
