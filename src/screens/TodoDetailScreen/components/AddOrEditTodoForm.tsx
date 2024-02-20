@@ -1,10 +1,11 @@
 import {Alert, Dimensions, StyleSheet, Text, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import RNPickerSelect from 'react-native-picker-select';
 import TextInput from '../../../components/TextInput';
 import Button from '../../../components/Button';
 import {useCallback, useEffect, useState} from 'react';
 import useTodoDetail from '../../../hooks/todo';
 import {TodoPriority, TodoStatus} from '../../../types/todo.types';
-import {useNavigation} from '@react-navigation/native';
 import {RootNavigationProps} from '../../../types/navigation.types';
 
 type AddOrEditTodoFormProps = {
@@ -23,6 +24,7 @@ export default function AddOrEditTodoForm(props: AddOrEditTodoFormProps) {
     if (todo) {
       setTitle(todo.title);
       setDescription(todo.description);
+      setPriority(todo.priority)
     }
   }, [todo]);
 
@@ -80,6 +82,20 @@ export default function AddOrEditTodoForm(props: AddOrEditTodoFormProps) {
         onChangeText={value => setDescription(value)}
       />
 
+      <Text style={[styles.inputLabel]}>Description:</Text>
+      <RNPickerSelect
+        onValueChange={value => setPriority(value)}
+        items={[
+          {label: 'High', value: TodoPriority.HIGH},
+          {label: 'Medium', value: TodoPriority.MEDIUM},
+          {label: 'Low', value: TodoPriority.LOW},
+        ]}
+        value={priority}
+        style={{
+          viewContainer: styles.picker,
+        }}
+      />
+
       {!isCreating && (
         <>
           <Button
@@ -135,5 +151,15 @@ const styles = StyleSheet.create({
   },
   box: {
     width: 15,
+  },
+  picker: {
+    marginBottom: 10,
+    flex: 1,
+    minHeight: 40,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 5,
+    justifyContent: 'center',
+    paddingHorizontal: 10
   },
 });

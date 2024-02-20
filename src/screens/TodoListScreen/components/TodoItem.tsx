@@ -7,9 +7,15 @@ import {
   ViewStyle,
 } from 'react-native';
 import moment from 'moment';
-import {Todo, TodoStatus} from '../../../types/todo.types';
+import {Todo, TodoPriority, TodoStatus} from '../../../types/todo.types';
 import {useNavigation} from '@react-navigation/native';
 import {RootNavigationProps} from '../../../types/navigation.types';
+
+const COLOR_BY_PRIORITY = {
+  [TodoPriority.HIGH]: 'red',
+  [TodoPriority.MEDIUM]: 'orange',
+  [TodoPriority.LOW]: 'gray',
+};
 
 export default function TodoItem(props: {
   todo: Todo;
@@ -38,6 +44,11 @@ export default function TodoItem(props: {
             todo.status === TodoStatus.COMPLETED && {color: 'green'},
           ]}>
           {todo.status === TodoStatus.COMPLETED ? 'Completed' : 'Not done'}
+        </Text>
+
+        <Text
+          style={[styles.subtitle, {color: COLOR_BY_PRIORITY[todo.priority]}]}>
+          {todo.priority}
         </Text>
 
         <Text style={[styles.subtitle]}>
