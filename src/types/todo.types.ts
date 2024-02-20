@@ -19,3 +19,5 @@ export enum TodoPriority {
   MEDIUM = 'MEDIUM',
   LOW = 'LOW',
 }
+
+export type SortPriority = 'increasing' | 'decreasing' | 'default';

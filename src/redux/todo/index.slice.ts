@@ -24,7 +24,17 @@ export const todoSlice = createSlice({
         createdDate: new Date(),
         updatedDate: new Date(),
         status: TodoStatus.CREATED,
-        priority: TodoPriority.HIGH,
+        priority: TodoPriority.MEDIUM,
+      },
+      {
+        id: '3',
+        ownerId: CONFIGS.fakeUsers[0].id,
+        title: 'Todo 3',
+        description: 'Todo description long text here',
+        createdDate: new Date(),
+        updatedDate: new Date(),
+        status: TodoStatus.CREATED,
+        priority: TodoPriority.LOW,
       },
     ] as Todo[],
   },
@@ -53,7 +63,7 @@ export const todoSlice = createSlice({
       );
     },
     deleteTodo: (state, action) => {
-      state.todos = state.todos.filter(i => i.id !== action.payload.id)
+      state.todos = state.todos.filter(i => i.id !== action.payload.id);
     },
   },
 });
