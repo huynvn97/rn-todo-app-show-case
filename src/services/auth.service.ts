@@ -12,7 +12,7 @@ function login(username: string, password: string): User {
   const foundUser = getUserByUserNameAndEmail(username, password);
 
   if (!foundUser) {
-    throw Error('Not found user');
+    throw Error('Username/password is incorrect!');
   }
 
   return {
