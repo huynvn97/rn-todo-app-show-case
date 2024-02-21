@@ -5,12 +5,14 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState: {
     user: null,
+    loggedUsers: [],
     login: {
       error: '',
       loading: false,
     },
   } as {
     user: User | null;
+    loggedUsers: User[];
     login: {
       error: string;
       loading: boolean;
@@ -25,14 +27,30 @@ export const authSlice = createSlice({
       state.login.loading = false;
       state.login.error = '';
       state.user = action.payload;
+      state.loggedUsers = [
+        ...state.loggedUsers.filter(u => u.id !== action.payload.id),
+        action.payload,
+      ];
     },
     loginFailure: (state, action) => {
       state.login.loading = false;
       state.login.error = action.payload;
     },
 
-    logout: state => {},
+    logout: state => {
+      const currentUser = state.user;
+      state.loggedUsers = state.loggedUsers.filter(
+        u => u.id !== currentUser?.id,
+      );
+
+      state.user = null;
+    },
+
+    switchUser: (state, action) => {
+      state.user = action.payload.user;
+    },
   },
 });
 
-export const {login, loginSuccess, loginFailure, logout} = authSlice.actions;
+export const {login, loginSuccess, loginFailure, logout, switchUser} =
+  authSlice.actions;

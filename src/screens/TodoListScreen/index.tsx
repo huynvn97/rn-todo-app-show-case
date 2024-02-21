@@ -16,6 +16,7 @@ import {RootNavigationProps} from '../../types/navigation.types';
 import TextInput from '../../components/TextInput';
 import useListTodo from '../../hooks/useListTodo';
 import RNPickerSelect from 'react-native-picker-select';
+import AuthHeader from '../shared/AuthHeader';
 
 type TodoListScreenProps = {};
 
@@ -37,6 +38,8 @@ export default function TodoListScreen(
 
   return (
     <SimpleLayout>
+      <AuthHeader />
+
       <View style={[styles.screenHeader]}>
         <Title>Todo List:</Title>
 
@@ -111,7 +114,7 @@ const styles = StyleSheet.create({
   screenHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 10,
+    marginVertical: 10
   },
   btnAdd: {
     paddingHorizontal: 5,

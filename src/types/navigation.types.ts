@@ -4,7 +4,7 @@ import type {
 } from '@react-navigation/native-stack';
 
 export type RootStackParamList = {
-  LoginScreen: undefined;
+  LoginScreen: {isSwitch?: boolean};
   TodoDetailScreen: {todoId: string};
   TodoListScreen: undefined;
 };

@@ -8,7 +8,7 @@ import {useAppSelector} from '../hooks/redux';
 const Stack = createNativeStackNavigator();
 
 export function RootNavigation() {
-  const isLoggedIn = useAppSelector(state => state.auth.user);
+  const isLoggedIn = useAppSelector(state => state.auth.loggedUsers.length);
 
   return (
     <NavigationContainer>
@@ -33,6 +33,14 @@ export function RootNavigation() {
             <Stack.Screen
               name="TodoDetailScreen"
               component={TodoDetailScreen}
+            />
+
+            <Stack.Screen
+              name="LoginScreen"
+              component={LoginScreen}
+              options={{
+                headerShown: false,
+              }}
             />
           </>
         )}

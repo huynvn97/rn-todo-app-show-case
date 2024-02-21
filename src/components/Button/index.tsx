@@ -17,6 +17,7 @@ export default function Button(props: ButtonProps) {
 
   return (
     <TouchableOpacity
+      hitSlop={{top: 5, bottom: 5, left: 5, right: 5}}
       testID="button-common"
       style={[styles.btnStyle, style]}
       {...rest}>
