@@ -18,15 +18,18 @@ type UseListTodoParams = {
   priority?: SortPriority;
 
   // Test data
+  testUserId?: string;
   testDodos?: Todo[];
 };
 
 export default function useListTodo(params: UseListTodoParams) {
-  const {searchText, priority, testDodos} = params;
+  const {searchText, priority, testUserId, testDodos} = params;
+  const currentUserId =
+    testUserId || useAppSelector(state => state.auth.user?.id);
   const todos = testDodos || useAppSelector(state => state.todos.todos);
 
   const todosFiltered = useMemo(() => {
-    let tempTodos = [...todos];
+    let tempTodos = [...todos.filter(u => u.ownerId === currentUserId)];
 
     if (searchText) {
       tempTodos = tempTodos.filter(td => td.title.includes(searchText));

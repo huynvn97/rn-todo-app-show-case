@@ -44,10 +44,12 @@ export const authSlice = createSlice({
       );
 
       state.user = null;
+      state.login.error = '';
     },
 
     switchUser: (state, action) => {
       state.user = action.payload.user;
+      state.login.error = '';
     },
   },
 });

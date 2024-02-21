@@ -50,6 +50,13 @@ export default function LoginScreen(
     }
   }, [currentUser?.id]);
 
+  useEffect(() => {
+    return () => {
+      setPassword('');
+      setUsername('');
+    };
+  }, []);
+
   return (
     <SimpleLayout innerContainerStyle={styles.innerContainer}>
       <Title style={styles.title}>Login Screen</Title>
@@ -119,6 +126,6 @@ const styles = StyleSheet.create({
   },
   error: {
     color: 'red',
-    marginVertical: 5
+    marginVertical: 5,
   },
 });
