@@ -48,6 +48,7 @@ it('useListTodo: Should return list todos sorted by priority increasing', () => 
       searchText: '',
       priority: 'increasing',
       testDodos: testDodos,
+      testUserId: CONFIGS.fakeUsers[0].id,
     }),
   );
 
@@ -64,6 +65,7 @@ it('useListTodo: Should return list todos sorted by priority decreasing', () => 
       searchText: '',
       priority: 'decreasing',
       testDodos: testDodos,
+      testUserId: CONFIGS.fakeUsers[0].id,
     }),
   );
 
@@ -80,6 +82,7 @@ it('useListTodo: Should return total count is 3', () => {
       searchText: '',
       priority: 'default',
       testDodos: testDodos,
+      testUserId: CONFIGS.fakeUsers[0].id,
     }),
   );
 
@@ -92,6 +95,7 @@ it('useListTodo: Should return total count is 1', () => {
       searchText: '',
       priority: 'default',
       testDodos: testDodos,
+      testUserId: CONFIGS.fakeUsers[0].id,
     }),
   );
 
@@ -104,6 +108,7 @@ it('useListTodo: Should return todo 1', () => {
       searchText: 'Todo 1',
       priority: 'default',
       testDodos: testDodos,
+      testUserId: CONFIGS.fakeUsers[0].id,
     }),
   );
 
