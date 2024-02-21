@@ -1,4 +1,23 @@
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Features
+- Login
+- Create Todo
+- Update Todo
+- Sort by priority
+- Search by todo title
+
+# Account info
+User: 1
+
+username: jackson.nguyen, password: 123456
+
+User: 2
+
+username: william.le, password: 123456
+
+User: 3
+
+username: tommy.nguyen, password: 123456
 
 # Getting Started
 
