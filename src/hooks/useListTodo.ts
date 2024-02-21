@@ -1,5 +1,10 @@
 import {useMemo} from 'react';
-import {SortPriority, TodoPriority, TodoStatus} from '../types/todo.types';
+import {
+  SortPriority,
+  Todo,
+  TodoPriority,
+  TodoStatus,
+} from '../types/todo.types';
 import {useAppSelector} from './redux';
 
 const POINT_BY_PRIORITY = {
@@ -11,11 +16,14 @@ const POINT_BY_PRIORITY = {
 type UseListTodoParams = {
   searchText?: string;
   priority?: SortPriority;
+
+  // Test data
+  testDodos?: Todo[];
 };
 
 export default function useListTodo(params: UseListTodoParams) {
-  const {searchText, priority} = params;
-  const todos = useAppSelector(state => state.todos.todos);
+  const {searchText, priority, testDodos} = params;
+  const todos = testDodos || useAppSelector(state => state.todos.todos);
 
   const todosFiltered = useMemo(() => {
     let tempTodos = [...todos];
