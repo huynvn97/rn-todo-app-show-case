@@ -8,12 +8,16 @@ import React from 'react';
 
 import {RootNavigation} from './src/navigation';
 import {Provider} from 'react-redux';
-import {store} from './src/redux';
+import {PersistGate} from 'redux-persist/integration/react';
+
+import {persistor, store} from './src/redux';
 
 function App(): React.JSX.Element {
   return (
     <Provider store={store}>
-      <RootNavigation />
+      <PersistGate loading={null} persistor={persistor}>
+        <RootNavigation />
+      </PersistGate>
     </Provider>
   );
 }
