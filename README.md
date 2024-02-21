@@ -16,6 +16,10 @@ username: william.le, password: 123456
 User: 3
 username: tommy.nguyen, password: 123456
 
+# Sample UnitTests
+- src/hooks/__tests__/todo/todo.test.tsx
+- src/components/Button/__tests__/button.test.tsx
+
 # Getting Started
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
