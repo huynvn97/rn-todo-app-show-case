@@ -16,8 +16,13 @@ export default function Button(props: ButtonProps) {
   const {title, style, titleStyle, ...rest} = props;
 
   return (
-    <TouchableOpacity style={[styles.btnStyle, style]} {...rest}>
-      <Text style={[styles.title, titleStyle]}>{title}</Text>
+    <TouchableOpacity
+      testID="button-common"
+      style={[styles.btnStyle, style]}
+      {...rest}>
+      <Text style={[styles.title, titleStyle]} testID="button-text-common">
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 }
