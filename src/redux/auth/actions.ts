@@ -23,7 +23,6 @@ export const loginAction = createAsyncThunk(
       const user = AuthService.login(payload.username, payload.password);
       console.log(user);
       thunkAPI.dispatch(loginSuccess(user));
-      payload.cb();
     } catch (e: any) {
       thunkAPI.dispatch(loginFailure(e?.message || 'Login error'));
     }
