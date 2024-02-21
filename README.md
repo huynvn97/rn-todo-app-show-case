@@ -8,15 +8,12 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 # Account info
 User: 1
-
 username: jackson.nguyen, password: 123456
 
 User: 2
-
 username: william.le, password: 123456
 
 User: 3
-
 username: tommy.nguyen, password: 123456
 
 # Getting Started
