@@ -1,7 +1,7 @@
 import React, {useCallback, useMemo, useState} from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import SimpleLayout from '../../components/Layout/SimpleLayout';
-import {useAppSelector} from '../../hooks/redux';
+import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 import Title from '../../components/Title';
 import {
   SortPriority,
@@ -17,12 +17,14 @@ import TextInput from '../../components/TextInput';
 import useListTodo from '../../hooks/useListTodo';
 import RNPickerSelect from 'react-native-picker-select';
 import AuthHeader from '../shared/AuthHeader';
+import {logoutAction} from '../../redux/auth/actions';
 
 type TodoListScreenProps = {};
 
 export default function TodoListScreen(
   props: TodoListScreenProps,
 ): React.ReactElement {
+  const dispatch = useAppDispatch();
   const [searchText, setSearchText] = useState('');
   const [sortPriority, setSortPriority] = useState<SortPriority>('default');
   const {todos, completedCount, totalCount} = useListTodo({
@@ -34,6 +36,16 @@ export default function TodoListScreen(
 
   const _renderItem = useCallback(({item}: {item: Todo}) => {
     return <TodoItem todo={item} containerStyle={{marginBottom: 10}} />;
+  }, []);
+
+  const handleLogout = useCallback(() => {
+    dispatch(
+      logoutAction({
+        cb: () => {
+          navigation.navigate('LoginScreen', {});
+        },
+      }),
+    );
   }, []);
 
   return (
@@ -66,6 +78,8 @@ export default function TodoListScreen(
           />
         }
       />
+
+      <Button title="Logout" onPress={() => handleLogout()} />
     </SimpleLayout>
   );
 }
@@ -114,7 +128,7 @@ const styles = StyleSheet.create({
   screenHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 10
+    marginVertical: 10,
   },
   btnAdd: {
     paddingHorizontal: 5,

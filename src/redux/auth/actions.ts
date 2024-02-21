@@ -32,8 +32,9 @@ export const loginAction = createAsyncThunk(
 
 export const logoutAction = createAsyncThunk(
   'auth/logout',
-  (payload: {user: User}, thunkAPI) => {
+  (payload: {cb: () => void}, thunkAPI) => {
     thunkAPI.dispatch(logout());
+    payload.cb();
   },
 );
 
